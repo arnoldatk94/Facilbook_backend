@@ -8,6 +8,7 @@ class UserPropertyRouter {
     const router = this.express.Router();
 
     router.get("/", this.controller.getAll);
+    router.post("/", this.controller.getAllByUserId);
 
     return router;
   };

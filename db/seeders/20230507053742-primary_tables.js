@@ -67,7 +67,7 @@ module.exports = {
           address: "38 Tanjong Rhu Road, Singapore 436953",
           photoUrl:
             "https://images.unsplash.com/photo-1580041065738-e72023775cdc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-          color: "#F9D5E5",
+          color: "##B8E2F2",
         },
       ],
       {}

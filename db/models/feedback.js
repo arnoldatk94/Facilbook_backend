@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   class Feedback extends Model {
     static associate(models) {
       this.belongsTo(models.facilities, { foreignKey: "facility_id" });
+      this.belongsTo(models.properties, { foreignKey: "property_id" });
       this.belongsTo(models.users_properties, {
         foreignKey: "user_property_id",
       });
@@ -16,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       facility_id: DataTypes.INTEGER,
       user_property_id: DataTypes.INTEGER,
       user_id: DataTypes.INTEGER,
+      property_id: DataTypes.INTEGER,
       comment: DataTypes.STRING,
       reply: DataTypes.STRING,
       completed: DataTypes.BOOLEAN,

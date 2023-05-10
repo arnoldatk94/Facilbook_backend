@@ -16,6 +16,7 @@ module.exports = {
           model: "facilities",
           key: "id",
         },
+        allowNull: false,
       },
       user_property_id: {
         type: Sequelize.INTEGER,
@@ -23,6 +24,7 @@ module.exports = {
           model: "users_properties",
           key: "id",
         },
+        allowNull: false,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -30,6 +32,15 @@ module.exports = {
           model: "users",
           key: "id",
         },
+        allowNull: false,
+      },
+      property_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "properties",
+          key: "id",
+        },
+        allowNull: false,
       },
       start_time: {
         type: Sequelize.DATE,
@@ -62,6 +73,7 @@ module.exports = {
           model: "facilities",
           key: "id",
         },
+        allowNull: false,
       },
       user_property_id: {
         type: Sequelize.INTEGER,
@@ -69,6 +81,7 @@ module.exports = {
           model: "users_properties",
           key: "id",
         },
+        allowNull: false,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -76,6 +89,15 @@ module.exports = {
           model: "users",
           key: "id",
         },
+        allowNull: false,
+      },
+      property_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "properties",
+          key: "id",
+        },
+        allowNull: false,
       },
       comment: {
         type: Sequelize.STRING,
