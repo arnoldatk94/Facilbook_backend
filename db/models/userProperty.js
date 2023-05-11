@@ -6,9 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       // Define associations here, if any
       this.belongsTo(models.users, { foreignKey: "user_id" });
       this.belongsTo(models.properties, { foreignKey: "property_id" });
-      // this.hasMany(models.bookings, {
-      //   foreignKey: "user_property_id",
-      // });
     }
   }
   UserProperty.init(

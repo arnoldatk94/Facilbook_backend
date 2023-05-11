@@ -10,6 +10,7 @@ class UserRouter {
     router.get("/", this.controller.getAll);
     router.post("/", this.controller.findOrCreateByEmail);
     router.put("/", this.controller.editUser);
+    router.post("/add", this.controller.addUser);
 
     return router;
   };

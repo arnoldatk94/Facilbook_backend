@@ -47,6 +47,25 @@ class UserController {
       return res.status(400).json({ error: true, msg: err });
     }
   };
+
+  addUser = async (req, res) => {
+    const { first_name, last_name, phone, email } = req.body;
+
+    try {
+      await this.model.create({
+        first_name,
+        last_name,
+        phone,
+        email,
+      });
+
+      const allUsers = await this.model.findAll();
+
+      return res.json(allUsers);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  };
 }
 
 module.exports = UserController;
