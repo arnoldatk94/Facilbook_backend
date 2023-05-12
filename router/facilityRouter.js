@@ -8,6 +8,7 @@ class FacilityRouter {
     const router = this.express.Router();
 
     router.get("/", this.controller.getAll);
+    router.put("/:id", this.controller.edit);
 
     return router;
   };

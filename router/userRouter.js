@@ -11,6 +11,7 @@ class UserRouter {
     router.post("/", this.controller.findOrCreateByEmail);
     router.put("/", this.controller.editUser);
     router.post("/add", this.controller.addUser);
+    router.put("/:id", this.controller.editManagementUser);
 
     return router;
   };
