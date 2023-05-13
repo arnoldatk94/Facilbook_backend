@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+
 class FacilityController {
   constructor(model) {
     this.model = model;
@@ -52,6 +54,51 @@ class FacilityController {
       // return all facilities, including the updated one
       const facilities = await this.model.findAll();
       return res.json(facilities);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  };
+
+  create = async (req, res) => {
+    try {
+      const {
+        property_id,
+        name,
+        photoUrl,
+        max_capacity,
+        start_time,
+        end_time,
+        booking_limit,
+      } = req.body; // get the new facility's properties from the request body
+
+      // check if a facility with the same property_id and name already exists
+      const existingFacility = await this.model.findOne({
+        where: {
+          property_id,
+          name,
+        },
+      });
+
+      if (existingFacility) {
+        // if a facility with the same property_id and name exists, return all facilities instead of creating a new one
+        const facilities = await this.model.findAll();
+        return res.json(facilities);
+      }
+
+      // create the new facility
+      await this.model.create({
+        property_id,
+        name,
+        photoUrl,
+        max_capacity,
+        start_time,
+        end_time,
+        booking_limit,
+      });
+
+      // return the new facility
+      const output = await this.model.findAll();
+      return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
