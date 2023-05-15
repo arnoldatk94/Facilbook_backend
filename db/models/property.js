@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "property_id",
         as: "property_id",
       });
+      // this.hasMany(models.link_properties, {
+      //   foreignKey: "property_id",
+      //   as: "property_id",
+      // });
       this.belongsToMany(models.users, {
         through: "users_properties",
         foreignKey: "property_id",

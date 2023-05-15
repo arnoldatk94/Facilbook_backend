@@ -1,4 +1,4 @@
-class PropertyRouter {
+class LinkPropertyRouter {
   constructor(controller, express) {
     this.controller = controller;
     this.express = express;
@@ -9,10 +9,11 @@ class PropertyRouter {
 
     router.get("/", this.controller.getAll);
     router.post("/", this.controller.add);
+    router.delete("/:id", this.controller.delete);
     router.put("/:id", this.controller.update);
 
     return router;
   };
 }
 
-module.exports = PropertyRouter;
+module.exports = LinkPropertyRouter;

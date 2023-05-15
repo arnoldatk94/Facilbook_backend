@@ -11,13 +11,21 @@ app.use(express.urlencoded({ extended: false }));
 
 // database
 const db = require("./db/models/index");
-const { users, properties, facilities, bookings, feedbacks, users_properties } =
-  db;
+const {
+  users,
+  properties,
+  facilities,
+  bookings,
+  feedbacks,
+  users_properties,
+  link_properties,
+} = db;
 
 // controllers
 const UserController = require("./controllers/userController");
 const PropertyController = require("./controllers/propertyController");
 const UserPropertyController = require("./controllers/userPropertyController");
+const LinkPropertyController = require("./controllers/linkPropertyController");
 const FacilityController = require("./controllers/facilityController");
 const BookingController = require("./controllers/bookingController");
 const FeedbackController = require("./controllers/feedbackController");
@@ -26,6 +34,7 @@ const FeedbackController = require("./controllers/feedbackController");
 const UserRouter = require("./router/userRouter");
 const PropertyRouter = require("./router/propertyRouter");
 const UserPropertyRouter = require("./router/userPropertyRouter");
+const LinkPropertyRouter = require("./router/linkPropertyRouter");
 const FacilityRouter = require("./router/facilityRouter");
 const BookingRouter = require("./router/bookingRouter");
 const FeedbackRouter = require("./router/feedbackRouter");
@@ -34,6 +43,7 @@ const FeedbackRouter = require("./router/feedbackRouter");
 const userController = new UserController(users);
 const propertyController = new PropertyController(properties);
 const userPropertyController = new UserPropertyController(users_properties);
+const linkPropertyController = new LinkPropertyController(link_properties);
 const facilityController = new FacilityController(facilities);
 const bookingController = new BookingController(bookings);
 const feedbackController = new FeedbackController(feedbacks);
@@ -45,6 +55,10 @@ const userPropertyRouter = new UserPropertyRouter(
   userPropertyController,
   express
 ).route();
+const linkPropertyRouter = new LinkPropertyRouter(
+  linkPropertyController,
+  express
+).route();
 const facilityRouter = new FacilityRouter(facilityController, express).route();
 const bookingRouter = new BookingRouter(bookingController, express).route();
 const feedbackRouter = new FeedbackRouter(feedbackController, express).route();
@@ -53,6 +67,7 @@ const feedbackRouter = new FeedbackRouter(feedbackController, express).route();
 app.use("/users", userRouter);
 app.use("/properties", propertyRouter);
 app.use("/users_properties", userPropertyRouter);
+app.use("/link_properties", linkPropertyRouter);
 app.use("/facilities", facilityRouter);
 app.use("/bookings", bookingRouter);
 app.use("/feedbacks", feedbackRouter);

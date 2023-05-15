@@ -41,9 +41,49 @@ module.exports = {
         defaultValue: new Date(),
       },
     });
+
+    await queryInterface.createTable("link_properties", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      property_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "properties",
+          key: "id",
+        },
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "users",
+          key: "id",
+        },
+      },
+      unit_no: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      request_status: {
+        type: Sequelize.STRING,
+        defaultValue: "Pending",
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+    });
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("users_properties");
+    await queryInterface.dropTable("link_properties");
   },
 };
