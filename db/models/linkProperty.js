@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       request_status: {
         type: DataTypes.STRING,
-        defaultValue: "pending",
+        defaultValue: "Pending",
       },
       created_at: {
         type: DataTypes.DATE,
