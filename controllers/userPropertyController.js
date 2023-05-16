@@ -1,6 +1,8 @@
 class UserPropertyController {
-  constructor(model) {
+  constructor(model, feedbacks, bookings) {
     this.model = model;
+    this.feedbacks = feedbacks;
+    this.bookings = bookings;
   }
 
   getAll = async (req, res) => {
@@ -49,6 +51,32 @@ class UserPropertyController {
         user_id: user_id,
         unit_no: unit_no,
         is_management: is_management,
+      });
+
+      const allUserProperties = await this.model.findAll();
+      return res.json(allUserProperties);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  };
+
+  deleteUserProperty = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      // First, delete all associated rows in the bookings table
+      await this.bookings.destroy({
+        where: { user_property_id: id },
+      });
+
+      // Next, delete all associated rows in the feedbacks table
+      await this.feedbacks.destroy({
+        where: { user_property_id: id },
+      });
+
+      // Finally, delete the row in the user_properties table
+      await this.model.destroy({
+        where: { id },
       });
 
       const allUserProperties = await this.model.findAll();

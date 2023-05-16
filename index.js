@@ -42,7 +42,12 @@ const FeedbackRouter = require("./router/feedbackRouter");
 // Initializing controllers
 const userController = new UserController(users);
 const propertyController = new PropertyController(properties);
-const userPropertyController = new UserPropertyController(users_properties);
+const userPropertyController = new UserPropertyController(
+  users_properties,
+  feedbacks,
+  bookings
+);
+
 const linkPropertyController = new LinkPropertyController(link_properties);
 const facilityController = new FacilityController(facilities);
 const bookingController = new BookingController(bookings);

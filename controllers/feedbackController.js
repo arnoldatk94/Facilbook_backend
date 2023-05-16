@@ -53,6 +53,21 @@ class FeedbackController {
       return res.status(400).json({ error: true, msg: err });
     }
   };
+
+  delete = async (req, res) => {
+    try {
+      const feedbackId = req.params.id;
+      const feedback = await this.model.findByPk(feedbackId);
+      if (!feedback) {
+        return res.status(404).json({ error: true, msg: "Feedback not found" });
+      }
+      await feedback.destroy();
+      const allFeedback = await this.model.findAll();
+      return res.json(allFeedback);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  };
 }
 
 module.exports = FeedbackController;

@@ -10,6 +10,7 @@ class FeedbackRouter {
     router.get("/", this.controller.getAll);
     router.put("/:id", this.controller.update);
     router.post("/", this.controller.add);
+    router.delete("/:id", this.controller.delete);
 
     return router;
   };
